@@ -46,18 +46,22 @@ jobs, deliberately.
 UI — rule builder, live search, undo history, and analytics charts.
 
 ## Current status
+## Current status
 
 - [x] Custom Trie — prefix-based filename search/autocomplete
 - [x] Custom hash table (separate chaining, polynomial rolling hash)
 - [x] SHA-256 implemented from scratch, verified with a known-answer test
 - [x] Dedupe module — content-based duplicate file detection
-- [ ] Heap-based "largest files" reporting
-- [ ] Transaction log for undo/rollback
-- [ ] Rules engine (extension/name/date/regex-based sorting)
+- [x] Min-heap — top-K largest-files report, verified against brute-force sort
+- [x] Transaction log — write-ahead style, disk-persisted, full undo support
+- [x] Rules engine — priority-based extension/filename/size rules
+- [x] Scanner — recursive directory walk
+- [x] End-to-end engine (`organizer.exe`) — scans, indexes, dedupes, reports, and sorts files with undo logging, all wired together
 - [ ] File-watcher daemon (auto-sort on file arrival)
 - [ ] Python content-classifier module
-- [ ] REST API layer (engine ↔ frontend)
+- [ ] REST API layer (engine ↔ frontend) — **blocks frontend integration, needed next**
 - [ ] React dashboard
+
 
 ## Repo structure
 
@@ -72,15 +76,44 @@ docs/ architecture notes, diagrams
 
 ## Building and running the engine tests
 
+## Building and running the engine tests
+
 From inside `engine/`:
-\```bash
+```bash
 g++ -std=c++17 -Wall -I include src/trie.cpp tests/test_trie.cpp -o test_trie
 ./test_trie
 
 g++ -std=c++17 -Wall -I include src/hash_table.cpp src/sha256.cpp src/dedupe.cpp tests/test_dedupe.cpp -o test_dedupe
 ./test_dedupe
-\```
-(On Windows PowerShell, run the resulting `.exe` as `.\test_trie.exe`.)
+
+g++ -std=c++17 -Wall -I include src/heap.cpp tests/test_heap.cpp -o test_heap
+./test_heap
+
+g++ -std=c++17 -Wall -I include src/transaction_log.cpp tests/test_transaction_log.cpp -o test_transaction_log
+./test_transaction_log
+
+g++ -std=c++17 -Wall -I include src/rules_engine.cpp tests/test_rules_engine.cpp -o test_rules_engine
+./test_rules_engine
+
+g++ -std=c++17 -Wall -I include src/scanner.cpp tests/test_scanner.cpp -o test_scanner
+./test_scanner
+```
+(On Windows PowerShell, run the resulting `.exe` as `.\test_trie.exe`, etc.)
+
+## Running the full engine end-to-end
+
+```bash
+g++ -std=c++17 -Wall -I include src/scanner.cpp src/trie.cpp src/hash_table.cpp src/sha256.cpp src/dedupe.cpp src/heap.cpp src/rules_engine.cpp src/transaction_log.cpp src/main.cpp -o organizer
+./organizer /path/to/a/messy/folder
+```
+This scans the folder, reports duplicates and the largest files, then actually
+sorts files into `Documents/`, `Photos/`, `Videos/` subfolders based on
+extension — with every move logged and undoable via the transaction log.
+
+**Note on portability:** the codebase intentionally avoids `std::filesystem`
+and `std::optional` (using `dirent.h`/`sys/stat.h` and plain structs instead)
+so it compiles on older compilers (tested down to GCC/MinGW 6.3.0), not just
+the newest ones.
 
 ## Team
 

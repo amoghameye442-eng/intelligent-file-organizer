@@ -1,13 +1,10 @@
-
 #include "transaction_log.hpp"
 #include <fstream>
 #include <sstream>
 #include <cstdio>
 #include <ctime>
+#include <algorithm>
 
-// Portable rename: returns true on success. Uses the C standard library's
-// rename() instead of std::filesystem::rename, so this compiles even on
-// older compilers that predate full C++17 filesystem support.
 static bool portable_rename(const std::string& from, const std::string& to) {
     return std::rename(from.c_str(), to.c_str()) == 0;
 }
@@ -16,7 +13,7 @@ std::string TransactionLog::action_to_string(ActionType a) {
     switch (a) {
         case ActionType::MOVE: return "MOVE";
         case ActionType::RENAME: return "RENAME";
-        case ActionType::DELETE: return "DELETE";
+        case ActionType::DELETE_ACTION: return "DELETE";
     }
     return "UNKNOWN";
 }
@@ -24,7 +21,7 @@ std::string TransactionLog::action_to_string(ActionType a) {
 ActionType TransactionLog::string_to_action(const std::string& s) {
     if (s == "MOVE") return ActionType::MOVE;
     if (s == "RENAME") return ActionType::RENAME;
-    return ActionType::DELETE;
+    return ActionType::DELETE_ACTION;
 }
 
 TransactionLog::TransactionLog(const std::string& log_file_path) : file_path(log_file_path) {
@@ -48,31 +45,24 @@ int TransactionLog::record(ActionType action, const std::string& path_before, co
 bool TransactionLog::undo(int id) {
     for (auto& entry : log) {
         if (entry.id != id || entry.undone) continue;
-
         bool success = false;
         switch (entry.action) {
             case ActionType::MOVE:
             case ActionType::RENAME:
-                // Reverse direction: move/rename it back to where it was.
                 success = portable_rename(entry.path_after, entry.path_before);
                 break;
-            case ActionType::DELETE:
-                // "Delete" was really a move to trash — undo = move it back.
+            case ActionType::DELETE_ACTION:
                 success = portable_rename(entry.path_after, entry.path_before);
                 break;
         }
-
-        if (!success) return false;  // filesystem operation failed, leave state as-is
-
+        if (!success) return false;
         entry.undone = true;
         persist();
         return true;
     }
-    return false;  // id not found or already undone
+    return false;
 }
 
-// Log file format: one entry per line, pipe-delimited.
-// id|action|path_before|path_after|timestamp|undone
 void TransactionLog::persist() {
     std::ofstream out(file_path, std::ios::trunc);
     for (const auto& e : log) {
@@ -86,24 +76,20 @@ static std::vector<std::string> split_pipe(const std::string& line) {
     std::vector<std::string> parts;
     std::stringstream ss(line);
     std::string field;
-    while (std::getline(ss, field, '|')) {
-        parts.push_back(field);
-    }
+    while (std::getline(ss, field, '|')) parts.push_back(field);
     return parts;
 }
 
 void TransactionLog::load() {
     log.clear();
     std::ifstream in(file_path);
-    if (!in) return;  // no existing log yet — that's fine, start empty
-
+    if (!in) return;
     std::string line;
     int max_id = 0;
     while (std::getline(in, line)) {
         if (line.empty()) continue;
         auto parts = split_pipe(line);
-        if (parts.size() != 6) continue;  // skip malformed lines defensively
-
+        if (parts.size() != 6) continue;
         LogEntry e;
         e.id = std::stoi(parts[0]);
         e.action = string_to_action(parts[1]);

@@ -23,8 +23,8 @@ The dashboard is the part everyone actually sees in the demo, so this
 carries real weight — it's not "just UI," it's the product surface.
 
 ### 1. Project setup
-- [ ] Initialize Vite + React + Tailwind project in `frontend/`
-- [ ] Set up routing (React Router) for: Dashboard, Search, Rules, History, Settings
+- [x] Initialize Vite + React + Tailwind project in `frontend/`
+- [x] Set up routing (React Router) for: Dashboard, Search, Rules, History, Settings
 - [ ] Set up a shared API client module (fetch/axios wrapper) pointing at the C++ engine's REST API
 
 ### 2. Dashboard (home) view

@@ -33,9 +33,9 @@ carries real weight — it's not "just UI," it's the product surface.
 - [x] Recent automation activity feed (backed by the transaction log)
 
 ### 3. Search view
-- [ ] Live search-as-you-type box, calling the Trie's prefix-search endpoint
-- [ ] Results list showing filename, full path, size, type
-- [ ] Debounce input so it doesn't spam the API on every keystroke
+- [x] Live search-as-you-type box, calling the Trie's prefix-search endpoint
+- [x] Results list showing filename, full path, size, type
+- [x] Debounce input so it doesn't spam the API on every keystroke
 
 ### 4. Rules view (the "wow" feature for the demo)
 - [ ] Visual rule builder: "if [extension/name/date] [condition] then move to [folder]"

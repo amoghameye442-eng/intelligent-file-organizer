@@ -28,9 +28,9 @@ carries real weight — it's not "just UI," it's the product surface.
 - [ ] Set up a shared API client module (fetch/axios wrapper) pointing at the C++ engine's REST API
 
 ### 2. Dashboard (home) view
-- [ ] Storage overview: total files, total size, breakdown by file type (pie/bar chart)
-- [ ] "Largest files" panel (backed by the engine's heap-based report)
-- [ ] Recent automation activity feed (backed by the transaction log)
+- [x] Storage overview: total files, total size, breakdown by file type (pie/bar chart)
+- [x] "Largest files" panel (backed by the engine's heap-based report)
+- [x] Recent automation activity feed (backed by the transaction log)
 
 ### 3. Search view
 - [ ] Live search-as-you-type box, calling the Trie's prefix-search endpoint

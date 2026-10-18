@@ -4,6 +4,7 @@ const navLinks = [
   { to: "/", label: "Dashboard", end: true },
   { to: "/search", label: "Search" },
   { to: "/rules", label: "Rules" },
+  { to: "/duplicates", label: "Duplicates" },
   { to: "/history", label: "History" },
   { to: "/settings", label: "Settings" },
 ]

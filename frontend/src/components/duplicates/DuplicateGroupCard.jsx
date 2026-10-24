@@ -52,7 +52,7 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
 
       {/* Every group has its OWN radio buttons: the `name` includes the group id,
           so choosing a copy here never changes any other group. */}
-      <fieldset disabled={disabled}>
+      <fieldset disabled={disabled} className="min-w-0">
         <legend className="sr-only">
           Choose which copy to keep in group {number}
         </legend>

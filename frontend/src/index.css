@@ -3,3 +3,11 @@
 /* Dark mode is switched by the class "dark" on <html> (not by the OS alone),
    so the toggle button can override the operating system. */
 @custom-variant dark (&:where(.dark, .dark *));
+
+/* Bigger text on large screens (a projector): everything sized in rem grows
+   with the root font size, so one rule scales the whole page. */
+@media (min-width: 96rem) {
+  html {
+    font-size: 112.5%;
+  }
+}

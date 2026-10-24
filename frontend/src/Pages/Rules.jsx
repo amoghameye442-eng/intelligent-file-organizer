@@ -107,12 +107,12 @@ function Rules() {
   }
 
   if (loading) {
-    return <p className="text-gray-500">Loading rules...</p>
+    return <p className="text-gray-500 dark:text-gray-400">Loading rules...</p>
   }
 
   if (loadError) {
     return (
-      <p className="rounded-md border border-red-200 bg-red-50 p-4 text-red-700">
+      <p className="rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 p-4 text-red-700 dark:text-red-300">
         {loadError}
       </p>
     )
@@ -124,8 +124,8 @@ function Rules() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-gray-800">Rules</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Rules</h1>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           Rules decide where files get moved automatically.
         </p>
       </div>
@@ -142,7 +142,7 @@ function Rules() {
       />
 
       {actionError && (
-        <p role="alert" className="rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <p role="alert" className="rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 p-3 text-sm text-red-700 dark:text-red-300">
           {actionError}
         </p>
       )}

@@ -1,1 +1,5 @@
 @import "tailwindcss";
+
+/* Dark mode is switched by the class "dark" on <html> (not by the OS alone),
+   so the toggle button can override the operating system. */
+@custom-variant dark (&:where(.dark, .dark *));

@@ -7,7 +7,7 @@ import {
 } from "../../utils/ruleHelpers"
 
 const inputClasses =
-  "w-full rounded-md border border-gray-300 bg-white px-3 py-2 text-sm text-gray-800 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200"
+  "w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-3 py-2 text-sm text-gray-800 dark:text-gray-100 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-900"
 
 // The visual rule builder: "If [field] [condition] [value] then move to [folder]".
 // It is used for BOTH adding a new rule and editing an existing one.
@@ -60,15 +60,15 @@ function RuleForm({ initialRule, onSave, onCancel, busy }) {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm"
+      className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 shadow-sm"
     >
-      <h2 className="mb-4 text-base font-semibold text-gray-800">
+      <h2 className="mb-4 text-base font-semibold text-gray-800 dark:text-gray-100">
         {isEditing ? "Edit rule" : "Add rule"}
       </h2>
 
       <div className="grid gap-4 md:grid-cols-4">
         <div>
-          <label htmlFor="rule-field" className="mb-1 block text-sm font-medium text-gray-700">
+          <label htmlFor="rule-field" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">
             If
           </label>
           <select id="rule-field" value={field} onChange={handleFieldChange} className={inputClasses}>
@@ -81,7 +81,7 @@ function RuleForm({ initialRule, onSave, onCancel, busy }) {
         </div>
 
         <div>
-          <label htmlFor="rule-condition" className="mb-1 block text-sm font-medium text-gray-700">
+          <label htmlFor="rule-condition" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">
             Condition
           </label>
           <select
@@ -99,7 +99,7 @@ function RuleForm({ initialRule, onSave, onCancel, busy }) {
         </div>
 
         <div>
-          <label htmlFor="rule-value" className="mb-1 block text-sm font-medium text-gray-700">
+          <label htmlFor="rule-value" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">
             Value
           </label>
           <input
@@ -115,7 +115,7 @@ function RuleForm({ initialRule, onSave, onCancel, busy }) {
         </div>
 
         <div>
-          <label htmlFor="rule-destination" className="mb-1 block text-sm font-medium text-gray-700">
+          <label htmlFor="rule-destination" className="mb-1 block text-sm font-medium text-gray-700 dark:text-gray-200">
             Then move to folder
           </label>
           <input
@@ -131,13 +131,13 @@ function RuleForm({ initialRule, onSave, onCancel, busy }) {
       </div>
 
       {/* A live sentence that updates as you type, so you can see the rule you are building. */}
-      <p className="mt-4 text-sm text-gray-500" data-testid="rule-preview">
+      <p className="mt-4 text-sm text-gray-500 dark:text-gray-400" data-testid="rule-preview">
         Preview: If {describeCondition({ field, condition, value })} → move to{" "}
         {destination.trim() === "" ? "…" : destination.trim()}
       </p>
 
       {error && (
-        <p role="alert" className="mt-3 rounded-md border border-red-200 bg-red-50 p-3 text-sm text-red-700">
+        <p role="alert" className="mt-3 rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 p-3 text-sm text-red-700 dark:text-red-300">
           {error}
         </p>
       )}
@@ -155,7 +155,7 @@ function RuleForm({ initialRule, onSave, onCancel, busy }) {
             type="button"
             onClick={onCancel}
             disabled={busy}
-            className="rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50 disabled:opacity-50"
+            className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-2 text-sm font-medium text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:opacity-50"
           >
             Cancel
           </button>

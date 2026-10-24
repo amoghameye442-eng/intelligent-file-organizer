@@ -10,20 +10,20 @@ function StorageOverview({ summary }) {
     <Panel title="Storage overview">
       <div className="mb-6 grid grid-cols-2 gap-4">
         <div>
-          <p className="text-sm text-gray-500">Total files</p>
-          <p className="text-2xl font-semibold text-gray-800">
+          <p className="text-sm text-gray-500 dark:text-gray-400">Total files</p>
+          <p className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
             {totalFiles.toLocaleString()}
           </p>
         </div>
         <div>
-          <p className="text-sm text-gray-500">Total size</p>
-          <p className="text-2xl font-semibold text-gray-800">
+          <p className="text-sm text-gray-500 dark:text-gray-400">Total size</p>
+          <p className="text-2xl font-semibold text-gray-800 dark:text-gray-100">
             {formatBytes(totalSizeBytes)}
           </p>
         </div>
       </div>
 
-      <h3 className="mb-3 text-sm font-medium text-gray-600">
+      <h3 className="mb-3 text-sm font-medium text-gray-600 dark:text-gray-300">
         Breakdown by file type
       </h3>
       <ul className="space-y-3">
@@ -35,17 +35,17 @@ function StorageOverview({ summary }) {
           return (
             <li key={item.type}>
               <div className="mb-1 flex justify-between text-sm">
-                <span className="text-gray-800">
+                <span className="text-gray-800 dark:text-gray-100">
                   {item.type}{" "}
-                  <span className="text-gray-400">
+                  <span className="text-gray-400 dark:text-gray-400">
                     ({item.count.toLocaleString()} files)
                   </span>
                 </span>
-                <span className="text-gray-600">
+                <span className="text-gray-600 dark:text-gray-300">
                   {formatBytes(item.sizeBytes)} &middot; {percent.toFixed(1)}%
                 </span>
               </div>
-              <div className="h-2 rounded-full bg-gray-100">
+              <div className="h-2 rounded-full bg-gray-100 dark:bg-gray-800">
                 {/* The width changes with the data, so it is set with a style
                     instead of a Tailwind class (Tailwind classes are fixed text). */}
                 <div

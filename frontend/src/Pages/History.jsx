@@ -103,13 +103,13 @@ function History() {
   return (
     <div className="space-y-6">
       <div>
-        <h1 className="text-2xl font-semibold text-gray-800">History</h1>
-        <p className="mt-1 text-sm text-gray-500">
+        <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">History</h1>
+        <p className="mt-1 text-sm text-gray-500 dark:text-gray-400">
           Actions the organizer has done on your files, newest first.
         </p>
       </div>
 
-      <p className="rounded-md border border-amber-200 bg-amber-50 p-3 text-sm text-amber-800">
+      <p className="rounded-md border border-amber-200 dark:border-amber-900 bg-amber-50 dark:bg-amber-950 p-3 text-sm text-amber-800 dark:text-amber-200">
         Mock mode: this list is sample data. Undo only updates a pretend list in
         memory and never moves, renames or deletes real files.
       </p>
@@ -119,8 +119,8 @@ function History() {
           role={notice.type === "error" ? "alert" : "status"}
           className={`rounded-md border p-3 text-sm ${
             notice.type === "error"
-              ? "border-red-200 bg-red-50 text-red-700"
-              : "border-green-200 bg-green-50 text-green-800"
+              ? "border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300"
+              : "border-green-200 dark:border-green-900 bg-green-50 dark:bg-green-950 text-green-800 dark:text-green-200"
           }`}
         >
           {notice.text}

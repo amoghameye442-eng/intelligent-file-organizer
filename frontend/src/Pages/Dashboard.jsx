@@ -47,12 +47,12 @@ function Dashboard() {
   }, [])
 
   if (loading) {
-    return <p className="text-gray-500">Loading dashboard...</p>
+    return <p className="text-gray-500 dark:text-gray-400">Loading dashboard...</p>
   }
 
   if (error) {
     return (
-      <p className="rounded-md border border-red-200 bg-red-50 p-4 text-red-700">
+      <p className="rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 p-4 text-red-700 dark:text-red-300">
         {error}
       </p>
     )
@@ -60,7 +60,7 @@ function Dashboard() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-gray-800">Dashboard</h1>
+      <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Dashboard</h1>
 
       <StorageOverview summary={summary} />
 

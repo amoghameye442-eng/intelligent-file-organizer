@@ -84,7 +84,7 @@ function Search() {
 
   return (
     <div className="space-y-6">
-      <h1 className="text-2xl font-semibold text-gray-800">Search</h1>
+      <h1 className="text-2xl font-semibold text-gray-800 dark:text-gray-100">Search</h1>
 
       <SearchBox value={query} onChange={setQuery} />
 

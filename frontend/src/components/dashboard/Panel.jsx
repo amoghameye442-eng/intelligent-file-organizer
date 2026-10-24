@@ -5,8 +5,8 @@
 // <Panel> and </Panel> when you use it.
 function Panel({ title, children }) {
   return (
-    <section className="rounded-lg border border-gray-200 bg-white p-5 shadow-sm">
-      <h2 className="mb-4 text-base font-semibold text-gray-800">{title}</h2>
+    <section className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-5 shadow-sm">
+      <h2 className="mb-4 text-base font-semibold text-gray-800 dark:text-gray-100">{title}</h2>
       {children}
     </section>
   )

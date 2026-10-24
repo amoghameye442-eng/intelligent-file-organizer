@@ -8,7 +8,7 @@ function SearchBox({ value, onChange }) {
     <div>
       <label
         htmlFor="file-search"
-        className="mb-2 block text-sm font-medium text-gray-700"
+        className="mb-2 block text-sm font-medium text-gray-700 dark:text-gray-200"
       >
         Search files by name
       </label>
@@ -19,9 +19,9 @@ function SearchBox({ value, onChange }) {
         onChange={(event) => onChange(event.target.value)}
         placeholder="e.g. report, IMG_, lecture"
         autoComplete="off"
-        className="w-full rounded-md border border-gray-300 bg-white px-4 py-2.5 text-sm text-gray-800 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200"
+        className="w-full rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-4 py-2.5 text-sm text-gray-800 dark:text-gray-100 shadow-sm focus:border-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-200 dark:focus:ring-blue-900"
       />
-      <p className="mt-2 text-xs text-gray-500">
+      <p className="mt-2 text-xs text-gray-500 dark:text-gray-400">
         Prefix search: finds file names that start with what you type.
       </p>
     </div>

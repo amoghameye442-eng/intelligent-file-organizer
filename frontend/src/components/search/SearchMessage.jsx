@@ -3,8 +3,8 @@
 function SearchMessage({ tone = "neutral", children }) {
   const toneClasses =
     tone === "error"
-      ? "border-red-200 bg-red-50 text-red-700"
-      : "border-gray-200 bg-white text-gray-500"
+      ? "border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 text-red-700 dark:text-red-300"
+      : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400"
 
   return (
     <p className={`rounded-lg border p-4 text-sm ${toneClasses}`}>{children}</p>

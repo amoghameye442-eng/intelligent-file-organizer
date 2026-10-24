@@ -21,7 +21,7 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
   return (
     <Panel title={`Group ${number}`}>
       <div className="-mt-2 mb-3 flex flex-wrap items-center justify-between gap-2">
-        <p className="text-sm text-gray-600">
+        <p className="text-sm text-gray-600 dark:text-gray-300">
           {files.length} identical copies
           {copySize !== null && (
             <>
@@ -34,7 +34,7 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
         <div className="flex items-center gap-3">
           {/* Only the first 12 characters, to keep the card tidy. The full
               checksum is in the tooltip. */}
-          <span className="font-mono text-xs text-gray-400" title={group.checksum}>
+          <span className="font-mono text-xs text-gray-400 dark:text-gray-400" title={group.checksum}>
             {group.checksum.slice(0, 12)}…
           </span>
           {keptPath !== null && (
@@ -42,7 +42,7 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
               type="button"
               onClick={() => onKeep(group.id, null)}
               disabled={disabled}
-              className="rounded-md border border-gray-300 bg-white px-2.5 py-1 text-xs text-gray-700 hover:bg-gray-50 disabled:cursor-not-allowed disabled:opacity-40"
+              className="rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-2.5 py-1 text-xs text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40"
             >
               Clear choice
             </button>
@@ -56,7 +56,7 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
         <legend className="sr-only">
           Choose which copy to keep in group {number}
         </legend>
-        <ul className="divide-y divide-gray-100 rounded-md border border-gray-200">
+        <ul className="divide-y divide-gray-100 dark:divide-gray-800 rounded-md border border-gray-200 dark:border-gray-700">
           {files.map((file) => {
             const isKept = keptPath === file.path
             const wouldBeRemoved = keptPath !== null && !isKept
@@ -65,7 +65,7 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
               <li key={file.path}>
                 <label
                   className={`flex cursor-pointer items-start gap-3 px-3 py-3 ${
-                    isKept ? "bg-green-50" : ""
+                    isKept ? "bg-green-50 dark:bg-green-950" : ""
                   }`}
                 >
                   <input
@@ -76,23 +76,23 @@ function DuplicateGroupCard({ group, number, keptPath, onKeep, disabled }) {
                     className="mt-1"
                   />
                   <div className="min-w-0 flex-1">
-                    <p className="truncate text-sm font-medium text-gray-800">
+                    <p className="truncate text-sm font-medium text-gray-800 dark:text-gray-100">
                       {file.filename}
                     </p>
-                    <p className="break-all text-xs text-gray-500">{file.path}</p>
+                    <p className="break-all text-xs text-gray-500 dark:text-gray-400">{file.path}</p>
                   </div>
-                  <span className="w-24 shrink-0 text-right text-sm text-gray-700">
+                  <span className="w-24 shrink-0 text-right text-sm text-gray-700 dark:text-gray-200">
                     {file.sizeBytes === null
                       ? "Unknown size"
                       : formatBytes(file.sizeBytes)}
                   </span>
                   {isKept && (
-                    <span className="shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-700">
+                    <span className="shrink-0 rounded-full bg-green-100 dark:bg-green-900/40 px-2 py-0.5 text-xs font-medium text-green-700 dark:text-green-300">
                       Keep
                     </span>
                   )}
                   {wouldBeRemoved && (
-                    <span className="shrink-0 rounded-full bg-amber-100 px-2 py-0.5 text-xs font-medium text-amber-700">
+                    <span className="shrink-0 rounded-full bg-amber-100 dark:bg-amber-900/40 px-2 py-0.5 text-xs font-medium text-amber-700 dark:text-amber-300">
                       Would be removed
                     </span>
                   )}

@@ -24,18 +24,18 @@ function SelectionSummary({
   onMark,
 }) {
   return (
-    <div className="sticky bottom-4 z-10 rounded-lg border border-gray-200 bg-white p-4 shadow-md">
+    <div className="sticky bottom-4 z-10 rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 shadow-md">
       <div className="flex flex-wrap items-center justify-between gap-4">
         <div>
-          <p className="text-sm font-medium text-gray-800">
+          <p className="text-sm font-medium text-gray-800 dark:text-gray-100">
             {decidedGroups} of {totalGroups} groups decided
           </p>
-          <p className="text-sm text-gray-600">
+          <p className="text-sm text-gray-600 dark:text-gray-300">
             {filesToRemove} {filesToRemove === 1 ? "file" : "files"} would be
             removed &middot; {formatBytes(bytesToFree)} could be freed
             {someSizesUnknown ? " (some sizes unknown)" : ""}
           </p>
-          <p className="mt-1 text-xs font-semibold text-amber-700">
+          <p className="mt-1 text-xs font-semibold text-amber-700 dark:text-amber-300">
             Selection only: nothing has been deleted or moved.
           </p>
         </div>

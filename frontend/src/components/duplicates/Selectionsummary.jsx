@@ -44,7 +44,7 @@ function SelectionSummary({
           type="button"
           onClick={onMark}
           disabled={busy || filesToRemove === 0}
-          className="rounded-md bg-blue-600 px-4 py-2 text-sm font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
+          className="w-full rounded-md bg-blue-600 px-4 py-2 text-sm sm:w-auto font-medium text-white hover:bg-blue-700 disabled:cursor-not-allowed disabled:opacity-50"
         >
           {busy ? "Working..." : "Mark selected copies for removal (mock)"}
         </button>

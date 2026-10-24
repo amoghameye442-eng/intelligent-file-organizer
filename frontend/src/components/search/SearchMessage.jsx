@@ -7,7 +7,14 @@ function SearchMessage({ tone = "neutral", children }) {
       : "border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 text-gray-500 dark:text-gray-400"
 
   return (
-    <p className={`rounded-lg border p-4 text-sm ${toneClasses}`}>{children}</p>
+    // role="alert" makes screen readers announce errors right away;
+    // role="status" announces the calmer loading / empty messages politely.
+    <p
+      role={tone === "error" ? "alert" : "status"}
+      className={`rounded-lg border p-4 text-sm ${toneClasses}`}
+    >
+      {children}
+    </p>
   )
 }
 

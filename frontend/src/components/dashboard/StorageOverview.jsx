@@ -6,6 +6,17 @@ import { formatBytes } from "../../utils/formatBytes"
 function StorageOverview({ summary }) {
   const { totalFiles, totalSizeBytes, byType } = summary
 
+  // Nothing scanned yet: say so instead of showing zeros and an empty list.
+  if (totalFiles === 0 || byType.length === 0) {
+    return (
+      <Panel title="Storage overview">
+        <p className="text-sm text-gray-500 dark:text-gray-400">
+          No files scanned yet.
+        </p>
+      </Panel>
+    )
+  }
+
   return (
     <Panel title="Storage overview">
       <div className="mb-6 grid grid-cols-2 gap-4">

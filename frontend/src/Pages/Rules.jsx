@@ -9,6 +9,7 @@ import {
 import { describeCondition } from "../utils/ruleHelpers"
 import RuleForm from "../components/rules/RuleForm"
 import RuleList from "../components/rules/RuleList"
+import SearchMessage from "../components/search/SearchMessage"
 
 function Rules() {
   // The list of rules, plus "are we still loading?" and "did loading fail?"
@@ -107,15 +108,11 @@ function Rules() {
   }
 
   if (loading) {
-    return <p className="text-gray-500 dark:text-gray-400">Loading rules...</p>
+    return <SearchMessage>Loading rules...</SearchMessage>
   }
 
   if (loadError) {
-    return (
-      <p className="rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 p-4 text-red-700 dark:text-red-300">
-        {loadError}
-      </p>
-    )
+    return <SearchMessage tone="error">{loadError}</SearchMessage>
   }
 
   // The rule object being edited (or null), so the form can start with its values.

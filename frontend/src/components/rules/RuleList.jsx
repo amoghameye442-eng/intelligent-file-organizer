@@ -1,4 +1,5 @@
 import { describeCondition } from "../../utils/ruleHelpers"
+import SearchMessage from "../search/SearchMessage"
 
 const buttonClasses =
   "rounded-md border border-gray-300 dark:border-gray-600 bg-white dark:bg-gray-900 px-2.5 py-1 text-sm text-gray-700 dark:text-gray-200 hover:bg-gray-50 dark:hover:bg-gray-800 disabled:cursor-not-allowed disabled:opacity-40"
@@ -12,11 +13,7 @@ const buttonClasses =
 //   onMove             function(rule, "up" | "down")
 function RuleList({ rules, editingId, busy, onEdit, onDelete, onMove }) {
   if (rules.length === 0) {
-    return (
-      <p className="rounded-lg border border-gray-200 dark:border-gray-700 bg-white dark:bg-gray-900 p-4 text-sm text-gray-500 dark:text-gray-400">
-        No rules yet. Add your first rule above.
-      </p>
-    )
+    return <SearchMessage>No rules yet. Add your first rule above.</SearchMessage>
   }
 
   return (

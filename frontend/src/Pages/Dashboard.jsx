@@ -7,6 +7,7 @@ import {
 import StorageOverview from "../components/dashboard/StorageOverview"
 import LargestFilesPanel from "../components/dashboard/LargestFilesPanel"
 import ActivityFeed from "../components/dashboard/ActivityFeed"
+import SearchMessage from "../components/search/SearchMessage"
 
 function Dashboard() {
   // State: the data we load, plus "are we still loading?" and "did it fail?"
@@ -47,15 +48,11 @@ function Dashboard() {
   }, [])
 
   if (loading) {
-    return <p className="text-gray-500 dark:text-gray-400">Loading dashboard...</p>
+    return <SearchMessage>Loading dashboard...</SearchMessage>
   }
 
   if (error) {
-    return (
-      <p className="rounded-md border border-red-200 dark:border-red-900 bg-red-50 dark:bg-red-950 p-4 text-red-700 dark:text-red-300">
-        {error}
-      </p>
-    )
+    return <SearchMessage tone="error">{error}</SearchMessage>
   }
 
   return (

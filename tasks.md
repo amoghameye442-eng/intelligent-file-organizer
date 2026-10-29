@@ -38,22 +38,22 @@ carries real weight — it's not "just UI," it's the product surface.
 - [x] Debounce input so it doesn't spam the API on every keystroke
 
 ### 4. Rules view (the "wow" feature for the demo)
-- [ ] Visual rule builder: "if [extension/name/date] [condition] then move to [folder]"
-- [ ] List of active rules, with edit/delete
-- [ ] Rule ordering (which rule wins if multiple match)
+- [x] Visual rule builder: "if [extension/name/date] [condition] then move to [folder]"
+- [x] List of active rules, with edit/delete
+- [x] Rule ordering (which rule wins if multiple match)
 
 ### 5. Duplicate files view
-- [ ] Display duplicate groups returned by the dedupe module
-- [ ] Let the user pick which copy to keep, trigger delete via the API
+- [x] Display duplicate groups returned by the dedupe module
+- [x] Let the user pick which copy to keep, trigger delete via the API
 
 ### 6. History / Undo view
-- [ ] Chronological list of every automated action (from the transaction log)
-- [ ] "Undo" button per action, calling the engine's rollback endpoint
+- [x] Chronological list of every automated action (from the transaction log)
+- [x] "Undo" button per action, calling the engine's rollback endpoint
 
 ### 7. Polish
-- [ ] Dark mode
-- [ ] Loading states / empty states for every view
-- [ ] Responsive layout for demo on a projector
+- [x] Dark mode
+- [x] Loading states / empty states for every view
+- [x] Responsive layout for demo on a projector
 
 ## Shared / either person
 - [ ] Agree on the REST API contract (endpoints, request/response shapes) before frontend work starts on data-dependent views — recommend doing this as a shared doc or even mock JSON responses so frontend isn't blocked waiting on backend

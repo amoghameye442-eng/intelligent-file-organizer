@@ -39,6 +39,16 @@ export function applyTheme(theme) {
   document.documentElement.style.colorScheme = theme
 }
 
+// Forgets the saved choice, so the theme follows the operating system again.
+// (The caller should then apply getSystemTheme() so the page updates at once.)
+export function clearStoredTheme() {
+  try {
+    localStorage.removeItem(STORAGE_KEY)
+  } catch {
+    // Storage blocked: nothing was saved, so there is nothing to forget.
+  }
+}
+
 // Remembers the user's choice for next time.
 export function saveTheme(theme) {
   try {

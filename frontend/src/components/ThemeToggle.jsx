@@ -26,6 +26,20 @@ function ThemeToggle() {
     return () => query.removeEventListener("change", handleSystemChange)
   }, [])
 
+  // There can be more than one toggle on screen (the header and the Settings
+  // page). Whenever ANY of them changes the class on <html>, every toggle
+  // re-reads it, so all the labels stay correct.
+  useEffect(() => {
+    const observer = new MutationObserver(() => {
+      setTheme(document.documentElement.classList.contains("dark") ? "dark" : "light")
+    })
+    observer.observe(document.documentElement, {
+      attributes: true,
+      attributeFilter: ["class"],
+    })
+    return () => observer.disconnect()
+  }, [])
+
   function handleClick() {
     const next = theme === "dark" ? "light" : "dark"
     applyTheme(next)

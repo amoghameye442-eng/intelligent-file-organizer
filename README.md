@@ -119,7 +119,7 @@ the newest ones.
 
 | Member | Owns |
 |---|---|
-| Amogh | C++ engine, data structures, algorithms, system architecture |
-| [sampan sharma | React dashboard, frontend architecture, API integration |
+| Amogh | C++ engine, data structures, algorithms, system architecture , API Integration |
+| sampan sharma | React dashboard, frontend architecture |
 
 See `docs/TASKS.md` for the detailed task breakdown.
